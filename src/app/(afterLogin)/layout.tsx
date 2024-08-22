@@ -3,13 +3,20 @@ import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
 import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
 import style from "@/app/(afterLogin)/layout.module.css";
-import { SearchIcon } from "@icons/icons";
 import chiikawa from "@images/chiikawa.png";
 import Image from "next/image";
 import Link from "next/link";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
+import RightSearchZone from "./_component/RightSearchZone";
 
-export default function AfterLoginLayout({ children }: PropsWithChildren) {
+interface AfterLoginLayoutProps extends PropsWithChildren {
+  modal: ReactNode;
+}
+
+export default function AfterLoginLayout({
+  children,
+  modal,
+}: AfterLoginLayoutProps) {
   return (
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
@@ -42,12 +49,7 @@ export default function AfterLoginLayout({ children }: PropsWithChildren) {
         <div className={style.rightSectionInner}>
           <main className={style.main}>{children}</main>
           <section className={style.rightSection}>
-            <div style={{ marginBottom: 60, width: "inherit" }}>
-              <form className={style.search}>
-                <SearchIcon />
-                <input type="search" />
-              </form>
-            </div>
+            <RightSearchZone />
             <TrendSection />
             <div className={style.followRecommend}>
               <h3>팔로우 추천</h3>
@@ -58,6 +60,7 @@ export default function AfterLoginLayout({ children }: PropsWithChildren) {
           </section>
         </div>
       </div>
+      {modal}
     </div>
   );
 }
