@@ -1,11 +1,14 @@
 import styles from "@/app/page.module.css";
 import { PropsWithChildren, ReactNode } from "react";
 
-interface LayoutProps extends PropsWithChildren {
+interface BeforeLoginLayoutProps extends PropsWithChildren {
   modal: ReactNode;
 }
 
-export default function Layout({ children, modal }: LayoutProps) {
+export default function BeforeLoginLayout({
+  children,
+  modal,
+}: BeforeLoginLayoutProps) {
   return (
     <div className={styles.container}>
       {children}
