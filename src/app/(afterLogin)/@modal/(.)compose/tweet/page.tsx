@@ -2,7 +2,6 @@
 
 import style from "./modal.module.css";
 import { useRef, useState } from "react";
-import woo from "@images/woo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CancelIcon, ImageIcon } from "@icons/icons";
