@@ -1,11 +1,11 @@
 "use client";
 
-import ra from "@images/ra.png";
 import Image from "next/image";
 import style from "./_css/logoutButton.module.css";
 
 export default function LogoutButton(): React.JSX.Element {
   const me = {
+    src: "/images/ra.png",
     id: "rakko",
     nickname: "랏코",
   };
@@ -16,7 +16,7 @@ export default function LogoutButton(): React.JSX.Element {
     <button className={style.logOutButton} onClick={onLogout}>
       <div className={style.logOutUserImage}>
         <Image
-          src={ra}
+          src={me.src}
           alt={me.id}
           width={50}
           height={50}

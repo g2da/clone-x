@@ -12,7 +12,6 @@ import style from "./_css/navMenu.module.css";
 
 export default function NavMenu(): React.JSX.Element {
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
   const me = {
     // 임시로 내 정보 있는것처럼
     id: "g2g2",

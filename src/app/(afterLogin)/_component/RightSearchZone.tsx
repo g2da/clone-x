@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import SearchForm from "./SearchForm";
 import style from "./_css/rightSearchZone.module.css";
-import { SearchIcon } from "@icons/icons";
 
 export default function RightSearchZone(): React.JSX.Element | null {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function RightSearchZone(): React.JSX.Element | null {
               <div>모든 사용자</div>
               <input
                 type="radio"
-                name="pf"
+                name="user"
                 defaultChecked
                 onChange={onChangeAll}
               />
@@ -41,7 +41,28 @@ export default function RightSearchZone(): React.JSX.Element | null {
               <div>내가 팔로우하는 사람들</div>
               <input
                 type="radio"
-                name="pf"
+                name="user"
+                value="on"
+                onChange={onChangeFollow}
+              />
+            </div>
+          </div>
+          <div>
+            <label>위치</label>
+            <div className={style.radio}>
+              <div>어디에서나</div>
+              <input
+                type="radio"
+                name="location"
+                defaultChecked
+                onChange={onChangeAll}
+              />
+            </div>
+            <div className={style.radio}>
+              <div>현 위치 주변</div>
+              <input
+                type="radio"
+                name="location"
                 value="on"
                 onChange={onChangeFollow}
               />
@@ -53,10 +74,7 @@ export default function RightSearchZone(): React.JSX.Element | null {
   }
   return (
     <div style={{ marginBottom: 60, width: "inherit" }}>
-      <form className={style.search}>
-        <SearchIcon />
-        <input type="search" />
-      </form>
+      <SearchForm />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import Trend from "@/app/(afterLogin)/_component/Trend";
-import style from "./_css/trendSection.module.css";
 import { usePathname } from "next/navigation";
+import style from "./_css/trendSection.module.css";
 
 export default function TrendSection(): React.JSX.Element | null {
   const pathname = usePathname();
@@ -12,6 +12,8 @@ export default function TrendSection(): React.JSX.Element | null {
     <div className={style.trendBg}>
       <div className={style.trend}>
         <h3>나를 위한 트렌드</h3>
+        <Trend />
+        <Trend />
         <Trend />
         <Trend />
         <Trend />
