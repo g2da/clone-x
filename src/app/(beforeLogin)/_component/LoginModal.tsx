@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars  -- 나중에 사용 예정 */
 "use client";
 
-import style from "@/app/(beforeLogin)/_component/login.module.css";
 import { CancelIcon } from "@icons/icons";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import style from "@/app/(beforeLogin)/_component/_css/login.module.css";
 
 export default function LoginModal(): React.JSX.Element {
   const [id, setId] = useState();
