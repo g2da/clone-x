@@ -29,7 +29,7 @@ export default function PostForm() {
     <form className={style.postForm} onSubmit={onSubmit}>
       <div className={style.postUserSection}>
         <div className={style.postUserImage}>
-          <Image src={woo} alt={me.id} />
+          <Image src={woo} alt={me.id} width={50} height={50} />
         </div>
       </div>
       <div className={style.postInputSection}>
@@ -51,7 +51,8 @@ export default function PostForm() {
               <button
                 className={style.uploadButton}
                 type="button"
-                onClick={onClickButton}>
+                onClick={onClickButton}
+              >
                 <ImageIcon />
               </button>
             </div>

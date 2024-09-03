@@ -4,23 +4,40 @@ import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
-import style from "./_css/post.module.css";
 import PostArticle from "./PostArticle";
+import { faker } from "@faker-js/faker";
+import PostImages from "./PostImages";
+import style from "./_css/post.module.css";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
-export default function Post(): React.JSX.Element {
+interface PostProps {
+  noImage?: boolean;
+}
+
+export default function Post({ noImage }: PostProps): React.JSX.Element {
   const target = {
     postId: 1,
+    content: "반가워용",
     User: {
       id: "hachiware",
       nickname: "하치와레",
       image: "/images/ha.png",
     },
-    content: "반가워용",
     createdAt: new Date(),
+    Images: [] as any[],
   };
+
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push(
+      { imageId: 1, link: faker.image.urlLoremFlickr() },
+      { imageId: 2, link: faker.image.urlLoremFlickr() },
+      { imageId: 3, link: faker.image.urlLoremFlickr() },
+      { imageId: 4, link: faker.image.urlLoremFlickr() }
+    );
+  }
+
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
@@ -48,7 +65,11 @@ export default function Post(): React.JSX.Element {
             </span>
           </div>
           <div>{target.content}</div>
-          <div className={style.postImageSection} />
+          {!noImage && (
+            <div>
+              <PostImages post={target} />
+            </div>
+          )}
           <ActionButtons />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
 import Post from "@/app/(afterLogin)/_component/Post";
-import style from "./_component/SinglePost.module.css";
 import CommentForm from "./_component/CommentForm";
+import style from "./singlePost.module.css";
 
 export default function SinglePostPage() {
   return (
