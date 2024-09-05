@@ -13,6 +13,7 @@ const me = {
 
 export default function TweetModal(): React.JSX.Element {
   const router = useRouter();
+  // eslint-disable-next-line no-unused-vars -- 나중에 사용 예정
   const [content, setContent] = useState();
   const imageRef = useRef<HTMLInputElement>(null);
   const onSubmit = () => {};
