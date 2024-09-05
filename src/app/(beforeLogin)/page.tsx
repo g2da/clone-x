@@ -1,5 +1,5 @@
-import Main from "@/app/(beforeLogin)/_component/Main";
+import { BeforeLoginHomePage } from "../views/beforeLogin";
 
-export default function HomePage(): React.JSX.Element {
-  return <Main />;
+export default function Page(): React.JSX.Element {
+  return <BeforeLoginHomePage />;
 }

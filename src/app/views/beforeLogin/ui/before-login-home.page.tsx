@@ -1,9 +1,9 @@
-import styles from "@/app/(beforeLogin)/_component/main.module.css";
 import chiikawaUniverse from "@images/chiikawa-universe.png";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/app/(beforeLogin)/_component/_css/main.module.css";
 
-export default function Main(): React.JSX.Element {
+export function BeforeLoginHomePage(): React.JSX.Element {
   return (
     <div className={styles.container}>
       <div className={styles.left}>

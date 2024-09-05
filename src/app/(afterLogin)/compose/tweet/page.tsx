@@ -1,11 +1,5 @@
-import TweetModal from "../../@modal/(.)compose/tweet/page";
-import HomePage from "../../home/page";
+import { TweetPage } from "@/app/views/afterLogin";
 
-export default function TweetPage() {
-  return (
-    <>
-      <HomePage />
-      <TweetModal />
-    </>
-  );
+export default function Page() {
+  return <TweetPage />;
 }

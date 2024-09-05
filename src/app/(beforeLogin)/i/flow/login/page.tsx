@@ -1,5 +1,5 @@
 import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
 
-export default function LoginPage(): React.JSX.Element {
+export default function Page(): React.JSX.Element {
   return <LoginModal />;
 }
