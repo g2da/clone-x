@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["loremflickr.com"],
+    domains: [
+      "avatars.githubusercontent.com",
+      "loremflickr.com",
+      "cloudflare-ipfs.com",
+    ],
   },
 };
 
