@@ -30,7 +30,7 @@ export default function LogoutButton(): React.JSX.Element | null {
       </div>
       <div className={style.logOutUserName}>
         <div>{me.user?.name}</div>
-        <div>@{me.user?.id}</div>
+        <div>@{me.user?.email}</div>
       </div>
     </button>
   );

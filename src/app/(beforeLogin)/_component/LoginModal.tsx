@@ -16,24 +16,18 @@ export default function LoginModal(): React.JSX.Element {
     e.preventDefault();
     setMessage("");
     try {
-      const result = await signIn("credentials", {
+      const response = await signIn("credentials", {
         username: id,
         password,
         redirect: false,
       });
-
-      // 디버깅: 서버에서 응답이 올바르게 오는지 확인
-      console.log("로그인 결과", result);
-
-      if (!result?.user) {
+      if (!response?.ok) {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
-        return;
+      } else {
+        router.replace("/home");
       }
-
-      // 로그인 성공 시 홈 페이지로 이동
-      router.replace("/home");
-    } catch (e) {
-      console.log("error", e);
+    } catch (err) {
+      console.error(err);
       setMessage("아이디와 비밀번호가 일치하지 않습니다.");
     }
   };

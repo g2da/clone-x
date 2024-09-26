@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage(): React.JSX.Element | null {
   const router = useRouter();
-  const session = useSession();
-  if (session) {
+  const { data: session } = useSession();
+  if (session?.user) {
     router.replace("/home");
     return null;
   }
