@@ -11,12 +11,6 @@ function generateDate() {
   });
 }
 const User = [
-  {
-    id: "g2g2",
-    nickname: "g3g3",
-    password: "123",
-    image: "/images/chiikawa.png",
-  },
   { id: "chiikawa", nickname: "치이카와", image: "/images/chiikawa.png" },
   { id: "ha", nickname: "하츄핑", image: faker.image.avatar() },
 ];
@@ -32,7 +26,7 @@ export const handlers = [
     console.log("로그인");
     return HttpResponse.json(User[0], {
       headers: {
-        "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/;Max-Age=0",
+        "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
       },
     });
   }),
