@@ -1,4 +1,3 @@
-import Post from "@/app/(afterLogin)/_component/Post";
 import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
 import Tab from "@/app/(afterLogin)/home/_component/Tab";
 import TabProvider from "@/app/(afterLogin)/home/_component/TabProvider";
@@ -8,24 +7,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-
-async function getPostRecommends() {
-  const res = await fetch(`http://localhost:9090/api/postRecommends`, {
-    next: {
-      tags: ["posts", "recommends"],
-    },
-    cache: "no-store",
-  });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
+import { getPostRecommends } from "../lib/get-post-recommends";
+import PostRecommends from "./post-recommends";
 
 export async function AfterLoginHomePage(): Promise<React.JSX.Element> {
   const queryClient = new QueryClient();
@@ -41,18 +24,7 @@ export async function AfterLoginHomePage(): Promise<React.JSX.Element> {
         <TabProvider>
           <Tab />
           <PostForm />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          <PostRecommends />
         </TabProvider>
       </HydrationBoundary>
     </main>
