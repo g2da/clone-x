@@ -24,7 +24,7 @@ export default function LoginModal(): React.JSX.Element {
       if (!response?.ok) {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       } else {
-        router.replace("/home");
+        await router.replace("/home");
       }
     } catch (err) {
       console.error(err);

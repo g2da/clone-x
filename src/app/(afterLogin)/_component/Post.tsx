@@ -5,44 +5,38 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
 import PostArticle from "./PostArticle";
-import { faker } from "@faker-js/faker";
 import PostImages from "./PostImages";
 import style from "./_css/post.module.css";
+import type { Post } from "@/model/post";
+import { MouseEventHandler } from "react";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
 interface PostProps {
   noImage?: boolean;
+  post: Post;
 }
 
-export default function Post({ noImage }: PostProps): React.JSX.Element {
-  const target = {
-    postId: 1,
-    content: "반가워용",
-    User: {
-      id: "hachiware",
-      nickname: "하치와레",
-      image: "/images/ha.png",
-    },
-    createdAt: new Date(),
-    Images: [] as any[],
-  };
+export default function Post({ noImage, post }: PostProps): React.JSX.Element {
+  let target = post;
+  // if (post.Original) {
+  //   target = post.Original;
+  // }
 
-  if (Math.random() > 0.5 && !noImage) {
-    target.Images.push(
-      { imageId: 1, link: faker.image.urlLoremFlickr() },
-      { imageId: 2, link: faker.image.urlLoremFlickr() },
-      { imageId: 3, link: faker.image.urlLoremFlickr() },
-      { imageId: 4, link: faker.image.urlLoremFlickr() }
-    );
-  }
+  const stopPropagation: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
-          <Link href={`/${target.User.id}`} className={style.postUserImage}>
+          <Link
+            href={`/${target.User.id}`}
+            className={style.postUserImage}
+            onClick={stopPropagation}
+          >
             <Image
               src={target.User.image}
               alt={target.User.nickname}
@@ -54,7 +48,7 @@ export default function Post({ noImage }: PostProps): React.JSX.Element {
         </div>
         <div className={style.postBody}>
           <div className={style.postMeta}>
-            <Link href={`/${target.User.id}`}>
+            <Link href={`/${target.User.id}`} onClick={stopPropagation}>
               <span className={style.postUserName}>{target.User.nickname}</span>
               &nbsp;
               <span className={style.postUserId}>@{target.User.id}</span>
@@ -64,6 +58,18 @@ export default function Post({ noImage }: PostProps): React.JSX.Element {
               {dayjs(target.createdAt).fromNow(true)}
             </span>
           </div>
+          {target.Parent && (
+            <div>
+              <Link
+                href={`/${target.Parent.User.id}`}
+                style={{ color: "rgb(29, 155, 240)" }}
+                onClick={stopPropagation}
+              >
+                @{target.Parent.User.id}
+              </Link>{" "}
+              님에게 보내는 답글
+            </div>
+          )}
           <div>{target.content}</div>
           {!noImage && (
             <div>

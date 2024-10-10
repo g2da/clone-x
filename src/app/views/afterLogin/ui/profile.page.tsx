@@ -1,7 +1,7 @@
 import Image from "next/image";
 import style from "@/app/(afterLogin)/[username]/profile.module.css";
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
-import Post from "@/app/(afterLogin)/_component/Post";
+import Post from "@/app/(afterLogin)/_component/post";
 
 export function ProfilePage() {
   const user = {

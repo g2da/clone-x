@@ -1,4 +1,5 @@
-/* eslint-disable no-console  */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import { faker } from "@faker-js/faker";
 import { HttpResponse, StrictResponse, http } from "msw";
 
@@ -14,7 +15,7 @@ const User = [
   { id: "chiikawa", nickname: "치이카와", image: "/images/chiikawa.png" },
   { id: "ha", nickname: "하츄핑", image: faker.image.avatar() },
 ];
-const Posts = [];
+// const Posts = [];
 
 const delay = (ms: number) =>
   new Promise((res) => {
@@ -58,14 +59,14 @@ export const handlers = [
     return HttpResponse.json([
       {
         postId: cursor + 1,
-        User: User[0],
+        User: User[1],
         content: `${cursor + 1} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
         createdAt: generateDate(),
       },
       {
         postId: cursor + 2,
-        User: User[0],
+        User: User[1],
         content: `${cursor + 2} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },

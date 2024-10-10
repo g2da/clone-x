@@ -1,4 +1,4 @@
-import Post from "@/app/(afterLogin)/_component/Post";
+import Post from "@/app/(afterLogin)/_component/post";
 import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_component/CommentForm";
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 import PhotoModalCloseButton from "@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton";

@@ -7,8 +7,10 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getPostRecommends } from "../lib/get-post-recommends";
-import PostRecommends from "./post-recommends";
+import { Suspense } from "react";
+import TabDeciderSuspense from "./tab-decider-suspense";
+import { getPostRecommends } from "../lib/get-following-posts";
+import Loading from "./after-login-home.loading";
 
 export async function AfterLoginHomePage(): Promise<React.JSX.Element> {
   const queryClient = new QueryClient();
@@ -24,7 +26,9 @@ export async function AfterLoginHomePage(): Promise<React.JSX.Element> {
         <TabProvider>
           <Tab />
           <PostForm />
-          <PostRecommends />
+          <Suspense fallback={<Loading />}>
+            <TabDeciderSuspense />
+          </Suspense>
         </TabProvider>
       </HydrationBoundary>
     </main>
