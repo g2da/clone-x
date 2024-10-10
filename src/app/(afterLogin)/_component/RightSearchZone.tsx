@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import SearchForm from "./SearchForm";
+import SearchForm from "./search-form";
 import style from "./_css/rightSearchZone.module.css";
 
 export default function RightSearchZone(): React.JSX.Element | null {
