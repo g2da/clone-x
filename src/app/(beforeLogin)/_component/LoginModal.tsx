@@ -1,8 +1,8 @@
 "use client";
 
 import style from "@/app/(beforeLogin)/_component/_css/login.module.css";
-import { signIn } from "@/auth"; // server 일 때
 import { CancelIcon } from "@icons/icons";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 
