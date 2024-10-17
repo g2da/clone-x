@@ -3,7 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getPostRecommends } from "../lib/get-following-posts";
+import { getPostRecommends } from "../lib/get-post-recommends";
 import TabDecider from "./tab-decider";
 
 export default async function TabDeciderSuspense() {

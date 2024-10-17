@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-query";
 import { Suspense } from "react";
 import TabDeciderSuspense from "./tab-decider-suspense";
-import { getPostRecommends } from "../lib/get-following-posts";
+import { getPostRecommends } from "../lib/get-post-recommends";
 import Loading from "./after-login-home.loading";
 
 export async function AfterLoginHomePage(): Promise<React.JSX.Element> {

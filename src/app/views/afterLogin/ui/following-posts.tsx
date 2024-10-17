@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Post from "@/app/(afterLogin)/_component/post";
 import type { Post as IPost } from "@/model/post";
-import { getFollowingPosts } from "../lib/get-post-recommends";
+import { getFollowingPosts } from "../lib/get-following-posts";
 
 export default function FollowingPosts() {
   const { data } = useQuery<IPost[]>({
