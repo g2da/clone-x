@@ -5,15 +5,16 @@ import type { Post as IPost } from "@/model/post";
 import { useQuery } from "@tanstack/react-query";
 import { getSearchResult } from "../lib/get-search-result";
 
-type Props = {
+interface SearchResultProps {
   searchParams: { q: string; f?: string; pf?: string };
-};
-export default function SearchResult({ searchParams }: Props) {
+}
+
+export default function SearchResult({ searchParams }: SearchResultProps) {
   const { data } = useQuery<
     IPost[],
     Object,
     IPost[],
-    [_1: string, _2: string, Props["searchParams"]]
+    [_1: string, _2: string, SearchResultProps["searchParams"]]
   >({
     queryKey: ["posts", "search", searchParams],
     queryFn: getSearchResult,

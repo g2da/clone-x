@@ -18,7 +18,6 @@ export default function PostRecommends() {
     queryKey: ["posts", "recommends"],
     queryFn: getPostRecommends,
     initialPageParam: 0,
-    // getNextPageParam: (lastPage) => lastPage.at(-1)?.postId,
     getNextPageParam: (lastPage) => lastPage.at(-1)?.postId,
     staleTime: 60 * 1000, // fresh -> stale, 5분이라는 기준,
     gcTime: 300 * 1000, // cache time, 기본은 5분, 5분 뒤는 cache 날아감!, gcTime > staleTime
@@ -35,9 +34,6 @@ export default function PostRecommends() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <>
       {data?.pages.map((page, i) => (

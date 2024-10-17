@@ -1,4 +1,3 @@
-import Post from "@/app/(afterLogin)/_component/post";
 import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_component/CommentForm";
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 import PhotoModalCloseButton from "@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton";
@@ -36,15 +35,15 @@ export default function PhotoDetailModal() {
         </div>
       </div>
       <div className={style.commentZone}>
-        <Post noImage />
+        {/* <Post noImage /> */}
         <CommentForm />
+        {/* <Post />
         <Post />
         <Post />
         <Post />
         <Post />
         <Post />
-        <Post />
-        <Post />
+        <Post /> */}
       </div>
     </div>
   );

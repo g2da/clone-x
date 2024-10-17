@@ -1,7 +1,7 @@
 import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
-import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
+import TrendSection from "@/app/(afterLogin)/_component/trend-section";
 import style from "@/app/(afterLogin)/layout.module.css";
 import { auth } from "@/auth";
 import chiikawa from "@images/chiikawa.png";
@@ -27,7 +27,8 @@ export default async function AfterLoginLayout({
           <div className={style.leftSectionFixed}>
             <Link
               className={style.logo}
-              href={session?.expires ? "/home" : "/"}>
+              href={session?.expires ? "/home" : "/"}
+            >
               <div className={style.logoPill}>
                 <Image
                   src={chiikawa}

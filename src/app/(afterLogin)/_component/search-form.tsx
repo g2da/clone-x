@@ -11,15 +11,15 @@ interface SearchFormProps {
 
 export default function SearchForm({ q }: SearchFormProps): React.JSX.Element {
   const router = useRouter();
-  const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-    router.push(`/search?q=${event.currentTarget.search.value}`);
+  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    router.push(`/search?q=${e.currentTarget.search.value}`);
   };
 
   return (
     <form className={style.search} onSubmit={onSubmit}>
       <SearchIcon />
-      <input type="search" />
+      <input type="search" name="search" />
     </form>
   );
 }
