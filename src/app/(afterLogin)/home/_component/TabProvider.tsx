@@ -2,9 +2,10 @@
 
 import { createContext, PropsWithChildren, useState } from "react";
 
+type TabItem = "rec" | "fol";
 export const TabContext = createContext({
   tab: "rec",
-  setTab: (value: "rec" | "fol") => {},
+  setTab: (value: TabItem) => {},
 });
 
 export default function TabProvider({ children }: PropsWithChildren) {

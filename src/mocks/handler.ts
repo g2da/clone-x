@@ -59,14 +59,14 @@ export const handlers = [
     return HttpResponse.json([
       {
         postId: cursor + 1,
-        User: User[1],
+        User: User[0],
         content: `${cursor + 1} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
         createdAt: generateDate(),
       },
       {
         postId: cursor + 2,
-        User: User[1],
+        User: User[0],
         content: `${cursor + 2} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
@@ -76,14 +76,14 @@ export const handlers = [
       },
       {
         postId: cursor + 3,
-        User: User[1],
+        User: User[0],
         content: `${cursor + 3} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [],
         createdAt: generateDate(),
       },
       {
         postId: cursor + 4,
-        User: User[1],
+        User: User[0],
         content: `${cursor + 4} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
@@ -307,14 +307,14 @@ export const handlers = [
   http.get("/api/trends", ({ request }) => {
     return HttpResponse.json([
       { tagId: 1, title: "하츄핑", count: 1264 },
-      { tagId: 2, title: "커피핑", count: 1264 },
-      { tagId: 3, title: "투핑", count: 1264 },
-      { tagId: 4, title: "쓰리핑", count: 1264 },
-      { tagId: 5, title: "포핑", count: 1264 },
-      { tagId: 6, title: "파이브핑", count: 1264 },
-      { tagId: 7, title: "식스핑", count: 1264 },
-      { tagId: 8, title: "세븐핑", count: 1264 },
-      { tagId: 9, title: "나인핑", count: 1264 },
+      { tagId: 2, title: "띠용핑", count: 1264 },
+      { tagId: 3, title: "아자핑", count: 1264 },
+      { tagId: 4, title: "따라핑", count: 1264 },
+      { tagId: 5, title: "라라핑", count: 1264 },
+      { tagId: 6, title: "키키핑", count: 1264 },
+      { tagId: 7, title: "아잉핑", count: 1264 },
+      { tagId: 8, title: "부끄핑", count: 1264 },
+      { tagId: 9, title: "깜빡핑", count: 1264 },
     ]);
   }),
 ];

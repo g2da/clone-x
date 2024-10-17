@@ -22,15 +22,15 @@ export async function AfterLoginHomePage(): Promise<React.JSX.Element> {
 
   return (
     <main className={style.main}>
-      <HydrationBoundary state={dehydrateState}>
-        <TabProvider>
-          <Tab />
-          <PostForm />
-          <Suspense fallback={<Loading />}>
-            <TabDeciderSuspense />
-          </Suspense>
-        </TabProvider>
-      </HydrationBoundary>
+      {/* <HydrationBoundary state={dehydrateState}> */}
+      <TabProvider>
+        <Tab />
+        <PostForm />
+        <Suspense fallback={<Loading />}>
+          <TabDeciderSuspense />
+        </Suspense>
+      </TabProvider>
+      {/* </HydrationBoundary> */}
     </main>
   );
 }
