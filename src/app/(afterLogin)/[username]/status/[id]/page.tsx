@@ -1,6 +1,5 @@
 import BackButton from "@/app/(afterLogin)/_component/BackButton";
-import Post from "@/app/(afterLogin)/_component/post";
-import CommentForm from "./_component/CommentForm";
+import CommentForm from "./_component/comment-form";
 import style from "./singlePost.module.css";
 import Comments from "./_component/comments";
 import SinglePost from "./_component/single-post";
@@ -20,7 +19,7 @@ export default function SinglePostPage({ params }: SinglePostPageProps) {
       </div>
       {/* <Post post={} /> */}
       <SinglePost id={id} />
-      <CommentForm />
+        <CommentForm id={id} />
       <div>
         <Comments id={id} />
       </div>

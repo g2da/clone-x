@@ -1,5 +1,5 @@
 import PhotoModalCloseButton from "@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton";
-import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_component/CommentForm";
+import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_component/comment-form";
 import Comments from "@/app/(afterLogin)/[username]/status/[id]/_component/comments";
 import { getComments } from "@/app/(afterLogin)/[username]/status/[id]/_lib/get-comments";
 import { getSinglePost } from "@/app/(afterLogin)/[username]/status/[id]/_lib/get-single-post";
@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-query";
 import ImageZone from "./_component/image-zone";
 import style from "./photoModal.module.css";
+import SinglePost from "@/app/(afterLogin)/[username]/status/[id]/_component/single-post";
 
 interface PhotoDetailModalProps {
   params: { id: string };
@@ -39,7 +40,8 @@ export default async function PhotoDetailModal({
         <PhotoModalCloseButton />
         <ImageZone id={id} />
         <div className={style.commentZone}>
-          <CommentForm />
+          <SinglePost id={id} noImage />
+          <CommentForm id={id} />
           <Comments id={id} />
         </div>
       </HydrationBoundary>

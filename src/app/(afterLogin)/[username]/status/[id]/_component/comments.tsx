@@ -5,13 +5,15 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { Post as IPost } from "@/model/post";
 import { getComments } from "../_lib/get-comments";
 
-type Props = {
+interface CommentsProps {
   id: string;
-};
-export default function Comments({ id }: Props) {
+}
+
+export default function Comments({ id }: CommentsProps) {
   const queryClient = useQueryClient();
   const post = queryClient.getQueryData(["posts", id]);
-  const { data, error } = useQuery<
+
+  const { data } = useQuery<
     IPost[],
     Object,
     IPost[],
@@ -23,8 +25,8 @@ export default function Comments({ id }: Props) {
     gcTime: 300 * 1000,
     enabled: !!post,
   });
-  if (post) {
-    return data?.map((post) => <Post post={post} key={post.postId} />);
-  }
-  return null;
+
+  return post
+    ? data?.map((post) => <Post post={post} key={post.postId} />)
+    : null;
 }
