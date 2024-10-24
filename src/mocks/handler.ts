@@ -13,6 +13,7 @@ function generateDate() {
 }
 const User = [
   { id: "chiikawa", nickname: "치이카와", image: "/images/chiikawa.png" },
+  { id: "g2g2", nickname: "지투", image: "/images/chiikawa.png" },
   { id: "ha", nickname: "하츄핑", image: faker.image.avatar() },
 ];
 // const Posts = [];
