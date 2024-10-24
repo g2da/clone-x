@@ -20,7 +20,7 @@ export const getSearchResult: QueryFunction<
   );
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
-
+  // TODO: next caching 차이 기억
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");

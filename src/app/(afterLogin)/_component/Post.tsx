@@ -1,14 +1,14 @@
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
+import type { Post } from "@/model/post";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
+import { MouseEventHandler } from "react";
 import PostArticle from "./PostArticle";
 import PostImages from "./PostImages";
 import style from "./_css/post.module.css";
-import type { Post } from "@/model/post";
-import { MouseEventHandler } from "react";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -20,9 +20,6 @@ interface PostProps {
 
 export default function Post({ noImage, post }: PostProps): React.JSX.Element {
   let target = post;
-  // if (post.Original) {
-  //   target = post.Original;
-  // }
 
   const stopPropagation: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.stopPropagation();
@@ -35,8 +32,7 @@ export default function Post({ noImage, post }: PostProps): React.JSX.Element {
           <Link
             href={`/${target.User.id}`}
             className={style.postUserImage}
-            onClick={stopPropagation}
-          >
+            onClick={stopPropagation}>
             <Image
               src={target.User.image}
               alt={target.User.nickname}
@@ -58,25 +54,13 @@ export default function Post({ noImage, post }: PostProps): React.JSX.Element {
               {dayjs(target.createdAt).fromNow(true)}
             </span>
           </div>
-          {target.Parent && (
-            <div>
-              <Link
-                href={`/${target.Parent.User.id}`}
-                style={{ color: "rgb(29, 155, 240)" }}
-                onClick={stopPropagation}
-              >
-                @{target.Parent.User.id}
-              </Link>{" "}
-              님에게 보내는 답글
-            </div>
-          )}
           <div>{target.content}</div>
           {!noImage && (
             <div>
               <PostImages post={target} />
             </div>
           )}
-          <ActionButtons />
+          <ActionButtons post={post} />
         </div>
       </div>
     </PostArticle>

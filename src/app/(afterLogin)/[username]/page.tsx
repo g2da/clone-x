@@ -1,5 +1,8 @@
 import { ProfilePage } from "@/app/views/afterLogin";
+import { ComponentProps } from "react";
 
-export default function Page() {
-  return <ProfilePage />;
+interface PageProps extends ComponentProps<typeof ProfilePage> {}
+
+export default function Page({ params }: PageProps) {
+  return <ProfilePage params={params} />;
 }

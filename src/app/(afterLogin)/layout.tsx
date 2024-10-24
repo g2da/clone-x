@@ -1,4 +1,3 @@
-import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
 import TrendSection from "@/app/(afterLogin)/_component/trend-section";
@@ -8,6 +7,7 @@ import chiikawa from "@images/chiikawa.png";
 import Image from "next/image";
 import Link from "next/link";
 import { PropsWithChildren, ReactNode } from "react";
+import FollowRecommendSection from "./_component/follow-recommend-section";
 import RightSearchZone from "./_component/RightSearchZone";
 import RQProvider from "./_component/RQProvider";
 
@@ -27,8 +27,7 @@ export default async function AfterLoginLayout({
           <div className={style.leftSectionFixed}>
             <Link
               className={style.logo}
-              href={session?.expires ? "/home" : "/"}
-            >
+              href={session?.expires ? "/home" : "/"}>
               <div className={style.logoPill}>
                 <Image
                   src={chiikawa}
@@ -64,9 +63,7 @@ export default async function AfterLoginLayout({
               <TrendSection />
               <div className={style.followRecommend}>
                 <h3>팔로우 추천</h3>
-                <FollowRecommend />
-                <FollowRecommend />
-                <FollowRecommend />
+                <FollowRecommendSection />
               </div>
             </section>
           </div>

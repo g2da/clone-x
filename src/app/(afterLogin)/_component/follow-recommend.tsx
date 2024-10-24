@@ -1,22 +1,23 @@
 "use client";
 
+import { User } from "@/model/user";
 import Image from "next/image";
 import style from "./_css/followRecommend.module.css";
-export default function FollowRecommend(): React.JSX.Element {
-  const onFollow = () => {};
 
-  const user = {
-    src: "/images/mo.png",
-    id: "momonga",
-    nickname: "모몽가",
-  };
+interface FollowRecommendProps {
+  user: User;
+}
+export default function FollowRecommend({
+  user,
+}: FollowRecommendProps): React.JSX.Element {
+  const onFollow = () => {};
 
   return (
     <div className={style.container}>
       <div className={style.userLogoSection}>
         <div className={style.userLogo}>
           <Image
-            src={user.src}
+            src={user.image}
             alt={user.id}
             width={50}
             height={50}
