@@ -9,13 +9,13 @@ import {
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import style from "./_css/navMenu.module.css";
+import { useSession } from "next-auth/react";
 
-export default function NavMenu(): React.JSX.Element {
+export default function NavMenu(): React.JSX.Element | null {
   const segment = useSelectedLayoutSegment();
-  const me = {
-    // 임시로 내 정보 있는것처럼
-    id: "g2g2",
-  };
+  const { data: me } = useSession();
+
+  if (!me?.user) return null;
 
   return (
     <>
@@ -70,11 +70,11 @@ export default function NavMenu(): React.JSX.Element {
           </div>
         </Link>
       </li>
-      {me?.id && (
+      {me?.user.id && (
         <li>
-          <Link href={`/${me?.id}`}>
+          <Link href={`/${me?.user.id}`}>
             <div className={style.navPill}>
-              {segment === me.id ? (
+              {segment === me.user?.id ? (
                 <>
                   <ProfileIcon />
                   <div style={{ fontWeight: "bold" }}>프로필</div>

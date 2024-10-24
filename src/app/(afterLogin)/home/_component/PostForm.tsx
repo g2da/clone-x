@@ -5,13 +5,13 @@ import woo from "@images/woo.png";
 import Image from "next/image";
 import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
 import style from "./_css/postForm.module.css";
+import { useSession } from "next-auth/react";
 
 export default function PostForm() {
+  const { data: me } = useSession();
+
   const imageRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState("");
-  const me = {
-    id: "woosagi",
-  };
 
   const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setContent(e.target.value);
@@ -25,11 +25,18 @@ export default function PostForm() {
     imageRef.current?.click();
   };
 
+  if (!me?.user) return null;
+
   return (
     <form className={style.postForm} onSubmit={onSubmit}>
       <div className={style.postUserSection}>
         <div className={style.postUserImage}>
-          <Image src={woo} alt={me.id} width={50} height={50} />
+          <Image
+            src={String(me.user.image)}
+            alt={String(me.user.id)}
+            width={50}
+            height={50}
+          />
         </div>
       </div>
       <div className={style.postInputSection}>

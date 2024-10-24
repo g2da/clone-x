@@ -5,14 +5,12 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CancelIcon, ImageIcon } from "@icons/icons";
+import { useSession } from "next-auth/react";
 
-const me = {
-  id: "woosagi",
-  src: "/images/woo.png",
-};
-
-export default function TweetModal(): React.JSX.Element {
+export default function TweetModal(): React.JSX.Element | null {
   const router = useRouter();
+  const { data: me } = useSession();
+
   // eslint-disable-next-line no-unused-vars -- 나중에 사용 예정
   const [content, setContent] = useState();
   const imageRef = useRef<HTMLInputElement>(null);
@@ -22,6 +20,8 @@ export default function TweetModal(): React.JSX.Element {
   };
   const onClickButton = () => {};
   const onChangeContent = () => {};
+
+  if (!me?.user) return null;
 
   return (
     <div className={style.modalBackground}>
@@ -33,7 +33,12 @@ export default function TweetModal(): React.JSX.Element {
           <div className={style.modalBody}>
             <div className={style.postUserSection}>
               <div className={style.postUserImage}>
-                <Image src={me.src} alt={me.id} width={20} height={20} />
+                <Image
+                  src={String(me.user.image)}
+                  alt={String(me.user.id)}
+                  width={20}
+                  height={20}
+                />
               </div>
             </div>
             <div className={style.inputDiv}>
