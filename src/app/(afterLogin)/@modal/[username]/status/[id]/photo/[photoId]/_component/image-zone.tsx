@@ -6,11 +6,13 @@ import type { Post as IPost } from "@/model/post";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import style from "../photoModal.module.css";
-type Props = {
+
+interface ImageZoneProps {
   id: string;
-};
-export default function ImageZone({ id }: Props) {
-  const { data: post, error } = useQuery<
+}
+
+export default function ImageZone({ id }: ImageZoneProps) {
+  const { data: post } = useQuery<
     IPost,
     Object,
     IPost,

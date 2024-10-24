@@ -12,10 +12,14 @@ export default function Tab() {
 
   const onClickHot = () => {
     setCurrent("hot");
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete("f");
     router.replace(`/search?q=${searchParams.get("q")}`);
   };
   const onClickNew = () => {
     setCurrent("new");
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("f", "live");
     router.replace(`/search?${searchParams.toString()}&f=live`);
   };
 
