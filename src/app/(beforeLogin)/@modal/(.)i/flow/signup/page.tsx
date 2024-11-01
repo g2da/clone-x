@@ -1,4 +1,4 @@
-import SignupModal from "@/app/(beforeLogin)/_component/SignupModal";
+import SignupModal from "@/app/(beforeLogin)/_component/sign-up-modal";
 
 export default function SignupPage(): React.JSX.Element {
   return (

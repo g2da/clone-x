@@ -25,6 +25,7 @@ export default function Post({ noImage, post }: PostProps): React.JSX.Element {
     e.stopPropagation();
   };
 
+  console.log(target.User); // FIXME: user 정보 확인
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>

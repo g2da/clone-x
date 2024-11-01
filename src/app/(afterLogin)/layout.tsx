@@ -20,6 +20,7 @@ export default async function AfterLoginLayout({
   modal,
 }: AfterLoginLayoutProps) {
   const session = await auth();
+
   return (
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
@@ -48,7 +49,7 @@ export default async function AfterLoginLayout({
                     게시하기
                   </Link>
                 </nav>
-                <LogoutButton />
+                <LogoutButton me={session} />
               </>
             ) : null}
           </div>

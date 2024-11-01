@@ -1,11 +1,12 @@
 "use client";
 
-import style from "./modal.module.css";
-import { useRef, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { CancelIcon, ImageIcon } from "@icons/icons";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import style from "./modal.module.css";
 
 export default function TweetModal(): React.JSX.Element | null {
   const router = useRouter();
@@ -42,7 +43,7 @@ export default function TweetModal(): React.JSX.Element | null {
               </div>
             </div>
             <div className={style.inputDiv}>
-              <textarea
+              <TextareaAutosize
                 className={style.input}
                 placeholder="무슨 일이 일어나고 있나요?"
                 value={content}
@@ -64,8 +65,7 @@ export default function TweetModal(): React.JSX.Element | null {
                 <button
                   className={style.uploadButton}
                   type="button"
-                  onClick={onClickButton}
-                >
+                  onClick={onClickButton}>
                   <ImageIcon />
                 </button>
               </div>
