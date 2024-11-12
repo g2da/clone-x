@@ -1,26 +1,29 @@
-import type { Post } from "@/model/post";
-import { QueryFunction } from "@tanstack/react-query";
-
-export const getSearchResult: QueryFunction<
-  Post[],
-  [_1: string, _2: string, searchParams: { q: string; pf?: string; f?: string }]
-> = async ({ queryKey }) => {
+type Props = {
+  pageParam?: number;
+  queryKey: [
+    _1: string,
+    _2: string,
+    searchParams: { q: string; pf?: string; f?: string }
+  ];
+};
+export const getSearchResult = async ({ queryKey, pageParam }: Props) => {
   const [_1, _2, searchParams] = queryKey;
-
+  const urlSearchParams = new URLSearchParams(searchParams);
   const res = await fetch(
-    `http://localhost:9090/api/search/${
-      searchParams.q
-    }?${searchParams.toString()}`,
+    `${
+      process.env.NEXT_PUBLIC_BASE_URL
+    }/api/posts?${urlSearchParams.toString()}&cursor=${pageParam}`,
     {
       next: {
         tags: ["posts", "search", searchParams.q],
       },
+      credentials: "include",
       cache: "no-store",
     }
   );
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
-  // TODO: next caching 차이 기억
+
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");

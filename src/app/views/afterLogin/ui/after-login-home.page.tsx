@@ -1,7 +1,7 @@
-import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
+import style from "@/app/(afterLogin)/home/_component/_css/home.module.css";
+import PostForm from "@/app/(afterLogin)/home/_component/post-form";
 import Tab from "@/app/(afterLogin)/home/_component/Tab";
 import TabProvider from "@/app/(afterLogin)/home/_component/TabProvider";
-import style from "@/app/(afterLogin)/home/_component/_css/home.module.css";
 import { auth } from "@/auth";
 import {
   dehydrate,

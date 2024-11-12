@@ -1,37 +1,43 @@
-import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
-import type { Post } from "@/model/post";
-import dayjs from "dayjs";
-import "dayjs/locale/ko";
-import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEventHandler } from "react";
+
+import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
+import type { Post as IPost } from "@/model/post";
 import PostArticle from "./PostArticle";
 import PostImages from "./PostImages";
 import style from "./_css/post.module.css";
+
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
 interface PostProps {
   noImage?: boolean;
-  post: Post;
+  post: IPost;
 }
 
 export default function Post({ noImage, post }: PostProps): React.JSX.Element {
+  console.log("11", post);
   let target = post;
+
+  if (post.Original) {
+    target = post.Original;
+  }
 
   const stopPropagation: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.stopPropagation();
   };
 
-  console.log(target.User); // FIXME: user 정보 확인
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
           <Link
-            href={`/${target.User.id}`}
+            href={`${target.User.id}`}
             className={style.postUserImage}
             onClick={stopPropagation}>
             <Image

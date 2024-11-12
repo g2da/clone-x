@@ -7,20 +7,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { ChangeEventHandler, FormEvent, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import style from "./_css/postForm.module.css";
+import style from "./_css/post-form.module.css";
 
 interface PostFormProps {
   me: Session | null;
 }
 
 export default function PostForm({ me }: PostFormProps) {
-  const imageRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState("");
   const [preview, setPreview] = useState<
     Array<{ dataUrl: string; file: File } | null>
   >([]);
 
+  const imageRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
+
   const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setContent(e.target.value);
   };
@@ -57,11 +58,6 @@ export default function PostForm({ me }: PostFormProps) {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault(); // 폼 제출 시 페이지 리로드 방지
-    mutation.mutate(e); // mutation.mutate 호출
-  };
-
   const mutation = useMutation({
     mutationFn: async (e: FormEvent) => {
       e.preventDefault();
@@ -76,7 +72,7 @@ export default function PostForm({ me }: PostFormProps) {
         body: formData,
       });
     },
-    async onSuccess(response, variable) {
+    async onSuccess(response) {
       const newPost = await response.json();
       setContent("");
       setPreview([]);
@@ -118,7 +114,7 @@ export default function PostForm({ me }: PostFormProps) {
   if (!me?.user) return null;
 
   return (
-    <form className={style.postForm} onSubmit={handleSubmit}>
+    <form className={style.postForm} onSubmit={mutation.mutate}>
       <div className={style.postUserSection}>
         <div className={style.postUserImage}>
           <Image

@@ -4,7 +4,7 @@ import { CancelIcon, ImageIcon } from "@icons/icons";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import style from "./modal.module.css";
 
@@ -14,6 +14,9 @@ export default function TweetModal(): React.JSX.Element | null {
 
   // eslint-disable-next-line no-unused-vars -- 나중에 사용 예정
   const [content, setContent] = useState();
+  const [preview, setPreview] = useState<
+    Array<{ dataUrl: string; file: File } | null>
+  >([]);
   const imageRef = useRef<HTMLInputElement>(null);
   const onSubmit = () => {};
   const onClickClose = () => {
@@ -21,7 +24,25 @@ export default function TweetModal(): React.JSX.Element | null {
   };
   const onClickButton = () => {};
   const onChangeContent = () => {};
-
+  const onUpload: ChangeEventHandler<HTMLInputElement> = (e) => {
+    e.preventDefault();
+    if (e.target.files) {
+      Array.from(e.target.files).forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreview((prevPreview) => {
+            const prev = [...prevPreview];
+            prev[index] = {
+              dataUrl: reader.result as string,
+              file,
+            };
+            return prev;
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
   if (!me?.user) return null;
 
   return (
@@ -60,6 +81,7 @@ export default function TweetModal(): React.JSX.Element | null {
                   name="imageFiles"
                   multiple
                   hidden
+                  onChange={onUpload}
                   ref={imageRef}
                 />
                 <button

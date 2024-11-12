@@ -34,20 +34,20 @@ export async function onSubmit(prevState: any, formData: FormData) {
     if (response.status === 403) {
       return { message: "user_exists" };
     }
+    console.log(await response.json());
     shouldRedirect = true;
     await signIn("credentials", {
       username: formData.get("id"),
       password: formData.get("password"),
       redirect: false,
     });
-    console.log(await response.json());
   } catch (err) {
     console.error(err);
-    return;
+    return { message: null };
   }
 
   if (shouldRedirect) {
     redirect("/home"); // try/catch문 안에서 X
-    return undefined;
   }
+  return { message: null };
 }

@@ -31,6 +31,13 @@
 .postInputSection {
   flex: 1;
 }
+
+.postInputSection textarea {
+  background: white;
+  color: black;
+  font-family: Malgun Gothic;
+}
+
 .postButtonSection {
   width: 100%;
 }

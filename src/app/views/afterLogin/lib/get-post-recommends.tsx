@@ -1,14 +1,11 @@
-interface getPostRecommendsProps {
-  pageParam?: number;
-}
-export async function getPostRecommends({ pageParam }: getPostRecommendsProps) {
+type Props = { pageParam?: number };
+export async function getPostRecommends({ pageParam }: Props) {
   const res = await fetch(
-    `http://localhost:9090/api/posts/recommends?cursor=${pageParam}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/recommends?cursor=${pageParam}`,
     {
       next: {
         tags: ["posts", "recommends"],
       },
-      cache: "no-store",
     }
   );
   // The return value is *not* serialized
